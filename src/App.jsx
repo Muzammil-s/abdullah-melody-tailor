@@ -2,14 +2,23 @@ import React from 'react';
 import { useTailor } from './context/TailorContext.jsx';
 import { Navbar } from './components/Navbar.jsx';
 import { FabricsStore } from './components/FabricsStore.jsx';
-import { BespokeStudio } from './components/BespokeStudio.jsx';
+import { StitchingHub } from './pages/measurements/StitchingHub.jsx';
+import { ShalwarKameezPage } from './pages/measurements/ShalwarKameezPage.jsx';
+import { KurtaPajamaPage } from './pages/measurements/KurtaPajamaPage.jsx';
+import { KurtaShalwarPage } from './pages/measurements/KurtaShalwarPage.jsx';
+import { DressShirtPage } from './pages/measurements/DressShirtPage.jsx';
+import { SleepingSuitPage } from './pages/measurements/SleepingSuitPage.jsx';
+import { WaistcoatPage } from './pages/measurements/WaistcoatPage.jsx';
+import { CoatPantPage } from './pages/measurements/CoatPantPage.jsx';
+import { SafariSuitPage } from './pages/measurements/SafariSuitPage.jsx';
+import { UniformsPage } from './pages/measurements/UniformsPage.jsx';
 import { CartView } from './components/CartView.jsx';
 import { CuttingSlip } from './components/CuttingSlip.jsx';
 import { AdminPanel } from './components/AdminPanel.jsx';
 import { Scissors, Sparkles, ShieldCheck, Ruler, Clock, Phone, MapPin, Award } from 'lucide-react';
 
 export default function App() {
-  const { currentView, setCurrentView, settings } = useTailor();
+  const { currentView, setCurrentView, navigateToGarment, settings } = useTailor();
 
   return (
     <div className="min-h-screen bg-obsidian-950 text-gray-100 selection:bg-champagne-500 selection:text-obsidian-950 flex flex-col font-sans">
@@ -21,7 +30,7 @@ export default function App() {
         </div>
         <div className="hidden md:flex items-center gap-6 text-[11px] font-sans text-gray-400">
           <span className="flex items-center gap-1.5">
-            <Ruler className="w-3 h-3 text-champagne-400" /> All Tailoring Measurements in Inches
+            <Ruler className="w-3 h-3 text-champagne-400" /> All Tailoring Measurements in Inches (- / + 0.25")
           </span>
           <span className="flex items-center gap-1.5">
             <ShieldCheck className="w-3 h-3 text-champagne-400" /> Handcrafted Precision &amp; Topfused Interlining
@@ -35,7 +44,16 @@ export default function App() {
       {/* Main View Router */}
       <main className="flex-1">
         {currentView === 'fabrics' && <FabricsStore />}
-        {currentView === 'studio' && <BespokeStudio />}
+        {(currentView === 'stitching' || currentView === 'studio') && <StitchingHub />}
+        {currentView === 'measurements-shalwar-kameez' && <ShalwarKameezPage />}
+        {currentView === 'measurements-kurta-pajama' && <KurtaPajamaPage />}
+        {currentView === 'measurements-kurta-shalwar' && <KurtaShalwarPage />}
+        {currentView === 'measurements-dress-shirt' && <DressShirtPage />}
+        {currentView === 'measurements-sleeping-suit' && <SleepingSuitPage />}
+        {currentView === 'measurements-waistcoat' && <WaistcoatPage />}
+        {currentView === 'measurements-coat-pant' && <CoatPantPage />}
+        {currentView === 'measurements-safari-suit' && <SafariSuitPage />}
+        {currentView === 'measurements-uniforms' && <UniformsPage />}
         {currentView === 'cart' && <CartView />}
         {currentView === 'slip' && <CuttingSlip />}
         {currentView === 'admin' && <AdminPanel />}
@@ -97,18 +115,18 @@ export default function App() {
                 </button>
               </li>
               <li>
-                <button onClick={() => setCurrentView('studio')} className="hover:text-champagne-400 transition-colors">
+                <button onClick={() => navigateToGarment('shalwar-kameez')} className="hover:text-champagne-400 transition-colors">
                   Shalwar Kameez Configurator (A1–A4, B1–B4)
                 </button>
               </li>
               <li>
-                <button onClick={() => setCurrentView('studio')} className="hover:text-champagne-400 transition-colors">
-                  Waistcoat &amp; Shoulder Slope Designs
+                <button onClick={() => navigateToGarment('waistcoat')} className="hover:text-champagne-400 transition-colors">
+                  Waistcoat &amp; 6 Shoulder Slope Designs
                 </button>
               </li>
               <li>
-                <button onClick={() => setCurrentView('studio')} className="hover:text-champagne-400 transition-colors">
-                  Coat Pant &amp; Prince Coat Studio
+                <button onClick={() => navigateToGarment('coat-pant', 'prince')} className="hover:text-champagne-400 transition-colors">
+                  Prince Coat &amp; Long Coat Atelier
                 </button>
               </li>
             </ul>

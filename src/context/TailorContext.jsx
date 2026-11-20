@@ -112,11 +112,76 @@ export const TailorProvider = ({ children }) => {
   });
 
   // Navigation / Tab State
-  const [currentView, setCurrentView] = useState('fabrics'); // 'fabrics' | 'studio' | 'cart' | 'admin' | 'slip'
+  const [currentView, setCurrentView] = useState('fabrics'); // 'fabrics' | 'stitching' | 'studio' | 'cart' | 'admin' | 'slip' | 'measurements-*'
   const [activeSlipOrder, setActiveSlipOrder] = useState(null);
+  const [coatMode, setCoatMode] = useState('prince'); // 'prince' | 'long' | 'sport' | 'pant'
+  const [uniformMode, setUniformMode] = useState('police'); // 'police' | 'fia'
 
   // Active Pre-selected Fabric for Custom Stitching
   const [preselectedFabric, setPreselectedFabric] = useState(null);
+
+  // Navigate directly to dedicated garment measurement page
+  const navigateToGarment = (garmentId, subMode = null) => {
+    switch (garmentId) {
+      case 'shalwar-kameez':
+        setCurrentView('measurements-shalwar-kameez');
+        break;
+      case 'kurta-pajama':
+        setCurrentView('measurements-kurta-pajama');
+        break;
+      case 'kurta-shalwar':
+        setCurrentView('measurements-kurta-shalwar');
+        break;
+      case 'dress-shirt':
+        setCurrentView('measurements-dress-shirt');
+        break;
+      case 'sleeping-suit':
+        setCurrentView('measurements-sleeping-suit');
+        break;
+      case 'waistcoat':
+        setCurrentView('measurements-waistcoat');
+        break;
+      case 'coat-pant':
+        if (subMode) setCoatMode(subMode);
+        setCurrentView('measurements-coat-pant');
+        break;
+      case 'prince-coat':
+        setCoatMode('prince');
+        setCurrentView('measurements-coat-pant');
+        break;
+      case 'long-coat':
+        setCoatMode('long');
+        setCurrentView('measurements-coat-pant');
+        break;
+      case 'sport-coat':
+        setCoatMode('sport');
+        setCurrentView('measurements-coat-pant');
+        break;
+      case 'pant-only':
+        setCoatMode('pant');
+        setCurrentView('measurements-coat-pant');
+        break;
+      case 'safari-suit':
+        setCurrentView('measurements-safari-suit');
+        break;
+      case 'uniforms':
+      case 'police-uniform':
+        if (subMode === 'fia' || garmentId === 'fia-uniform') {
+          setUniformMode('fia');
+        } else {
+          setUniformMode('police');
+        }
+        setCurrentView('measurements-uniforms');
+        break;
+      case 'fia-uniform':
+        setUniformMode('fia');
+        setCurrentView('measurements-uniforms');
+        break;
+      default:
+        setCurrentView('stitching');
+        break;
+    }
+  };
 
   // Persist State Changes
   useEffect(() => {
@@ -197,10 +262,26 @@ export const TailorProvider = ({ children }) => {
     return newOrder;
   };
 
-  // Launch Bespoke Studio with Preselected Fabric
+  // Launch Bespoke Studio or Measurement Page with Preselected Fabric
   const buyFabricWithStitch = (fabric, meters) => {
     setPreselectedFabric({ fabric, meters });
-    setCurrentView('studio');
+    if (fabric.usageCategory === 'shalwar-kameez') {
+      setCurrentView('measurements-shalwar-kameez');
+    } else if (fabric.usageCategory === 'only-coat') {
+      setCoatMode('long');
+      setCurrentView('measurements-coat-pant');
+    } else if (fabric.usageCategory === '2pc-suit') {
+      setCoatMode('prince');
+      setCurrentView('measurements-coat-pant');
+    } else if (fabric.usageCategory === 'pant-only') {
+      setCoatMode('pant');
+      setCurrentView('measurements-coat-pant');
+    } else if (fabric.usageCategory === 'long-coat') {
+      setCoatMode('long');
+      setCurrentView('measurements-coat-pant');
+    } else {
+      setCurrentView('stitching');
+    }
   };
 
   // Admin Actions
@@ -277,6 +358,11 @@ export const TailorProvider = ({ children }) => {
         updateOrderStatus,
         currentView,
         setCurrentView,
+        coatMode,
+        setCoatMode,
+        uniformMode,
+        setUniformMode,
+        navigateToGarment,
         activeSlipOrder,
         setActiveSlipOrder,
         preselectedFabric,

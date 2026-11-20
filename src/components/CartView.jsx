@@ -21,8 +21,11 @@ export const CartView = () => {
     clearCart,
     placeOrder,
     settings,
-    setCurrentView
+    setCurrentView,
+    navigateToGarment
   } = useTailor();
+
+  const [expandedMeasurements, setExpandedMeasurements] = useState({});
 
   // Customer checkout form state
   const [customer, setCustomer] = useState({
@@ -222,22 +225,27 @@ export const CartView = () => {
                       <div className="flex flex-wrap gap-1.5 pt-2">
                         {item.designOptions?.collar && (
                           <span className="text-[10px] bg-obsidian-950 px-2 py-0.5 rounded border border-obsidian-800 text-gray-300">
-                            Collar {item.designOptions.collar.code}
+                            Collar {item.designOptions.collar.code || item.designOptions.collar.title}
                           </span>
                         )}
                         {item.designOptions?.banStyle && (
                           <span className="text-[10px] bg-obsidian-950 px-2 py-0.5 rounded border border-obsidian-800 text-gray-300">
-                            Ban {item.designOptions.banStyle.code} ({item.designOptions.banSize})
+                            Ban {item.designOptions.banStyle.code || item.designOptions.banStyle.title} ({item.designOptions.banSize}")
                           </span>
                         )}
                         {item.designOptions?.pocket && (
                           <span className="text-[10px] bg-obsidian-950 px-2 py-0.5 rounded border border-obsidian-800 text-gray-300">
-                            {item.designOptions.pocket.title}
+                            {item.designOptions.pocket.title || `Pocket ${item.designOptions.pocket}`}
                           </span>
                         )}
                         {item.designOptions?.button && (
                           <span className="text-[10px] bg-obsidian-950 px-2 py-0.5 rounded border border-obsidian-800 text-gray-300">
-                            Btn {item.designOptions.button.code}
+                            Btn {item.designOptions.button.code || item.designOptions.button}
+                          </span>
+                        )}
+                        {item.designOptions?.shoulderSlope && (
+                          <span className="text-[10px] bg-obsidian-950 px-2 py-0.5 rounded border border-champagne-500/30 text-champagne-300">
+                            Slope: {item.designOptions.shoulderSlope.title || item.designOptions.shoulderSlope}
                           </span>
                         )}
                         {item.designOptions?.coatCategory && (
@@ -246,6 +254,54 @@ export const CartView = () => {
                           </span>
                         )}
                       </div>
+
+                      {/* Expandable Exact Measurements in Inches */}
+                      {item.measurements && Object.keys(item.measurements).length > 0 && (
+                        <div className="pt-2">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setExpandedMeasurements((prev) => ({
+                                ...prev,
+                                [item.cartId]: !prev[item.cartId]
+                              }))
+                            }
+                            className="text-[11px] text-champagne-400 hover:text-champagne-300 font-semibold underline flex items-center gap-1"
+                          >
+                            <span>
+                              {expandedMeasurements[item.cartId]
+                                ? 'Hide Precise Measurements'
+                                : 'Show All Measurements (Inches)'}
+                            </span>
+                          </button>
+
+                          {expandedMeasurements[item.cartId] && (
+                            <div className="mt-2 p-2.5 rounded-xl bg-obsidian-950 border border-obsidian-800 grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-[11px]">
+                              {Object.entries(item.measurements)
+                                .filter(([_, v]) => v !== undefined && v !== null && v !== '')
+                                .map(([k, v]) => (
+                                  <div key={k} className="flex justify-between bg-obsidian-900/80 px-2 py-1 rounded border border-obsidian-850">
+                                    <span className="text-gray-400 capitalize">{k.replace(/([A-Z])/g, ' $1')}:</span>
+                                    <span className="font-mono font-bold text-champagne-300">{v}"</span>
+                                  </div>
+                                ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Direct Page Link */}
+                      {item.garmentId && (
+                        <div className="pt-2">
+                          <button
+                            type="button"
+                            onClick={() => navigateToGarment(item.garmentId)}
+                            className="text-[10px] uppercase font-bold tracking-wider text-gray-400 hover:text-champagne-400 transition-colors"
+                          >
+                            &larr; Open {item.garmentTitle || 'Garment'} Measurement Studio
+                          </button>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
