@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdullah Melody Tailor — Visual Assets Review Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0b0c10;
+      --card-bg: #141720;
+      --card-border: #232834;
+      --card-hover-border: #c5a059;
+      --gold-primary: #d4af37;
+      --gold-light: #f5e6b8;
+      --gold-dark: #8c6d23;
+      --text-main: #f0f3f8;
+      --text-muted: #95a0b2;
+      --accent-user: #e5b84c;
+      --accent-curated: #2ec4b6;
+      --accent-svg: #4895ef;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* Luxury Header */
+    header {
+      background: linear-gradient(180deg, #12151d 0%, #0b0c10 100%);
+      border-bottom: 1px solid #1e2430;
+      padding: 28px 40px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .brand-title h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      letter-spacing: 2.5px;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .brand-title p {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background: #141822;
+      border: 1px solid #232936;
+      border-radius: 8px;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .stat-pill strong {
+      font-size: 15px;
+      color: #fff;
+    }
+
+    .stat-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .dot-user { background: var(--accent-user); box-shadow: 0 0 8px var(--accent-user); }
+    .dot-curated { background: var(--accent-curated); box-shadow: 0 0 8px var(--accent-curated); }
+    .dot-svg { background: var(--accent-svg); box-shadow: 0 0 8px var(--accent-svg); }
+
+    /* Controls bar */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      max-width: 380px;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: #151922;
+      border: 1px solid #262d3d;
+      border-radius: 8px;
+      padding: 10px 14px 10px 36px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      fill: #788295;
+    }
+
+    .filters-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      max-width: 100%;
+    }
+
+    .filter-btn {
+      background: #141822;
+      border: 1px solid #222938;
+      color: var(--text-muted);
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #202738;
+      color: #ffffff;
+      border-color: var(--gold-primary);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1680px;
+      margin: 0 auto;
+      padding: 30px 40px 80px;
+    }
+
+    .category-section {
+      margin-bottom: 50px;
+    }
+
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid #1f2533;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+
+    .category-title-group h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      letter-spacing: 1px;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .category-title-group p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .cat-count-badge {
+      background: #1c212d;
+      border: 1px solid #283142;
+      color: var(--gold-light);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    .asset-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .asset-card:hover {
+      border-color: var(--card-hover-border);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.7);
+    }
+
+    .card-thumb-wrap {
+      position: relative;
+      width: 100%;
+      height: 290px;
+      background: #0d0f14;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.4s ease;
+    }
+
+    .asset-card:hover .card-thumb-wrap img {
+      transform: scale(1.04);
+    }
+
+    .source-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .badge-local-user {
+      background: rgba(229, 184, 76, 0.9);
+      color: #121008;
+    }
+
+    .badge-web-curated {
+      background: rgba(46, 196, 182, 0.9);
+      color: #03211e;
+    }
+
+    .badge-technical-svg {
+      background: rgba(72, 149, 239, 0.9);
+      color: #09172e;
+    }
+
+    .card-content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+
+    .card-subtitle {
+      font-size: 11.5px;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+
+    .card-specs {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .tag-item {
+      background: #10131a;
+      border: 1px solid #1e2430;
+      color: #8994a5;
+      font-size: 9.5px;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #1d222e;
+      padding-top: 10px;
+      margin-top: auto;
+      gap: 8px;
+    }
+
+    .path-text {
+      font-size: 10px;
+      font-family: monospace;
+      color: #6c788c;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+    .card-btn {
+      background: #181d27;
+      border: 1px solid #283142;
+      color: var(--gold-light);
+      border-radius: 4px;
+      padding: 5px 9px;
+      font-size: 10.5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .card-btn:hover {
+      background: var(--gold-primary);
+      color: #000000;
+      border-color: var(--gold-primary);
+    }
+
+    /* Lightbox Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 5, 8, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #141720;
+      border: 1px solid #2b3342;
+      border-radius: 14px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid #202634;
+    }
+
+    .modal-header h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      color: var(--gold-primary);
+    }
+
+    .close-btn {
+      background: transparent;
+      border: none;
+      color: #8e9bb0;
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .close-btn:hover {
+      color: #ffffff;
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .modal-img-wrap {
+      max-width: 100%;
+      max-height: 520px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #232a38;
+      background: #0a0b0e;
+    }
+
+    .modal-img-wrap img {
+      max-width: 100%;
+      max-height: 520px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .modal-details {
+      width: 100%;
+      background: #0f1218;
+      border: 1px solid #1e2430;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gold-primary);
+      color: #0b0c10;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+      z-index: 2000;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-top">
+      <div class="brand-title">
+        <h1>Abdullah Melody Tailor</h1>
+        <p>Bespoke Tailoring Visual Asset Catalog & Design Review Gallery</p>
+      </div>
+      <div class="stats-bar">
+        <div class="stat-pill">
+          <span>Total Visuals:</span>
+          <strong id="stat-total">96</strong>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-dot dot-user"></span>
+          <span>Local User Photos:</span>
+          <strong id="stat-user">17</strong>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-dot dot-curated"></span>
+          <span>Web Curated:</span>
+          <strong id="stat-curated">14</strong>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-dot dot-svg"></span>
+          <span>Technical SVGs:</span>
+          <strong id="stat-svg">65</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="searchInput" placeholder="Search by name, spec, lapel, collar, pocket, fabric...">
+      </div>
+      <div class="filters-row" id="filterPills">
+        <button class="filter-btn active" data-filter="all">All Assets (96)</button>
+        <button class="filter-btn" data-filter="garments">Garments (10)</button>
+        <button class="filter-btn" data-filter="fabrics_imported">Imported Fabrics (6)</button>
+        <button class="filter-btn" data-filter="fabrics_local">Local Fabrics (6)</button>
+        <button class="filter-btn" data-filter="designs_shalwar_kameez">Shalwar Kameez (26)</button>
+        <button class="filter-btn" data-filter="designs_waistcoat">Waistcoat (7)</button>
+        <button class="filter-btn" data-filter="designs_coat_pant">Coat-Pant (31)</button>
+        <button class="filter-btn" data-filter="designs_safari_suit">Safari Suit (5)</button>
+        <button class="filter-btn" data-filter="designs_uniforms">Uniforms (2)</button>
+        <button class="filter-btn" data-filter="unclassified">Showroom (3)</button>
+        <button class="filter-btn" data-source="local-user">★ Local User (17)</button>
+        <button class="filter-btn" data-source="web-curated">★ Curated (14)</button>
+        <button class="filter-btn" data-source="technical-svg">★ Diagrams (65)</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Gallery Container -->
+  <main id="galleryContainer">
+    <!-- Rendered via JS from embedded imageManifest -->
+  </main>
+
+  <!-- Modal Lightbox & Image Swapper -->
+  <div class="modal-overlay" id="lightboxModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalTitle">Asset Details</h3>
+        <button class="close-btn" id="modalClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-img-wrap">
+          <img id="modalImage" src="" alt="Full preview">
+        </div>
+        <div class="modal-details">
+          <p id="modalSubtitle" style="color: var(--gold-primary); font-weight: 600; margin-bottom: 6px;"></p>
+          <p id="modalSpecs" style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;"></p>
+          <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <code id="modalPath" style="background: #090a0d; padding: 6px 10px; border-radius: 4px; font-size: 11px; color: #a2b0c4; flex: 1;"></code>
+            <button class="card-btn" id="modalCopyBtn">Copy Path</button>
+            <label class="card-btn" style="background: var(--gold-primary); color: #000; cursor: pointer;">
+              Swap / Test Local File
+              <input type="file" id="imageSwapInput" accept="image/*" style="display: none;">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toastNotice">Copied to clipboard!</div>
+
+  <script>
+    const manifest = {"brand": {"name": "Abdullah Melody Tailor", "tagline": "Master Bespoke Tailoring & Sartorial Excellence", "established": "1988", "currency": "PKR"}, "generatedAt": "2026-11-19T22:30:00+05:00", "version": "1.0.0", "stats": {"totalAssets": 96, "localUser": 17, "webCurated": 14, "technicalSvg": 65}, "categories": [{"id": "garments", "name": "Bespoke Garments (10 Outfits)", "description": "The ten core bespoke silhouettes offered by Abdullah Melody Tailor", "items": [{"id": "shalwar-kameez", "title": "Shalwar Kameez", "subtitle": "National Sartorial Attire", "sourceType": "web-curated", "relativePath": "/images/garments/shalwar-kameez.jpg", "filename": "shalwar-kameez.jpg", "specs": "Traditional cut with ban collar, clean front patti, tailored cuff sleeves, and matching shalwar.", "tags": ["Traditional", "National", "Formal", "Everyday"]}, {"id": "kurta-pajama", "title": "Kurta Pajama", "subtitle": "Royal Ivory Heritage Cut", "sourceType": "web-curated", "relativePath": "/images/garments/kurta-pajama.jpg", "filename": "kurta-pajama.jpg", "specs": "Straight-cut kurta in pure raw silk with classic ban collar and tailored straight pajama trousers.", "tags": ["Traditional", "Festive", "Comfort"]}, {"id": "dress-shirt", "title": "Bespoke Dress Shirt", "subtitle": "Savile Row Precision", "sourceType": "web-curated", "relativePath": "/images/garments/dress-shirt.jpg", "filename": "dress-shirt.jpg", "specs": "Sky blue micro-stripe formal cotton shirting with semi-spread collar, French cuffs, and split back yoke.", "tags": ["Western", "Corporate", "Formal", "Shirting"]}, {"id": "sleeping-suit", "title": "Sleeping Suit / Pajama Set", "subtitle": "Luxury Bespoke Loungewear", "sourceType": "web-curated", "relativePath": "/images/garments/sleeping-suit.jpg", "filename": "sleeping-suit.jpg", "specs": "Soft combed Egyptian cotton navy lounge suit with white piped collar and relaxed elasticated trousers.", "tags": ["Loungewear", "Nightwear", "Cotton"]}, {"id": "police-uniform", "title": "Pakistan Police Service Uniform", "subtitle": "Official Regulated Tailoring", "sourceType": "web-curated", "relativePath": "/images/garments/police-uniform.jpg", "filename": "police-uniform.jpg", "specs": "Heavyweight drill olive/khaki uniform shirt with dual box-pleat pockets, star epaulettes, and service trousers.", "tags": ["Uniform", "Service", "Official", "Government"]}, {"id": "fia-uniform", "title": "FIA Executive Service Uniform", "subtitle": "Federal Law Enforcement Specification", "sourceType": "web-curated", "relativePath": "/images/garments/fia-uniform.jpg", "filename": "fia-uniform.jpg", "specs": "Midnight navy tactical dress uniform with executive collar, reinforced chest utility flaps, and ranking tabs.", "tags": ["Uniform", "Federal", "Tactical", "Official"]}, {"id": "kurta-shalwar", "title": "Kurta Shalwar", "subtitle": "Festive & Wedding Elegance", "sourceType": "web-curated", "relativePath": "/images/garments/kurta-shalwar.jpg", "filename": "kurta-shalwar.jpg", "specs": "Royal blue raw silk kurta adorned with tonal resham embroidery on collar and placket with classic shalwar.", "tags": ["Festive", "Wedding", "Embroidered"]}, {"id": "waistcoat", "title": "Waistcoat (Wasket)", "subtitle": "Traditional Nehru Layering", "sourceType": "web-curated", "relativePath": "/images/garments/waistcoat.jpg", "filename": "waistcoat.jpg", "specs": "Textured charcoal tweed with micro-gold weave, five-button ban front, welt chest pocket, and satin back cinch.", "tags": ["Festive", "Formal", "Layering", "Waistcoat"]}, {"id": "coat-pant", "title": "Coat Pant (2-Piece Suit)", "subtitle": "Handcrafted Master Cut", "sourceType": "local-user", "relativePath": "/images/garments/coat-pant.jpg", "filename": "coat-pant.jpg", "specs": "Navy blue subtle windowpane check lounge jacket with 3.5\" peak lapels, flap pockets, and matching trousers.", "tags": ["Bespoke", "Suiting", "Lounge Suit", "Local-User-Asset"]}, {"id": "safari-suit", "title": "Safari Suit", "subtitle": "Classic Field & Executive Cut", "sourceType": "web-curated", "relativePath": "/images/garments/safari-suit.jpg", "filename": "safari-suit.jpg", "specs": "Khaki tan tropical blend with 4 box-pleated bellows pockets, camp collar, half back belt, and matching trousers.", "tags": ["Safari", "Vintage", "Executive"]}]}, {"id": "fabrics_imported", "name": "Imported Suiting Fabrics", "description": "World-class European and international mill fabrics curated for luxury bespoke tailoring", "items": [{"id": "super-wool", "title": "Super 150s Worsted Wool", "subtitle": "Italian / British Mill Weave", "sourceType": "web-curated", "relativePath": "/images/fabrics/imported/super-wool.jpg", "filename": "super-wool.jpg", "specs": "Ultra-fine worsted wool twill (15.5 micron). Breathable, wrinkle-resistant with natural stretch.", "tags": ["Imported", "Wool", "Super 150s", "All-Season"]}, {"id": "egyptian-giza-cotton", "title": "Egyptian Giza Cotton", "subtitle": "Extra Long Staple Shirting", "sourceType": "web-curated", "relativePath": "/images/fabrics/imported/egyptian-giza-cotton.jpg", "filename": "egyptian-giza-cotton.jpg", "specs": "100% Giza 87 long-staple cotton with silky hand feel and brilliant white lustre. Perfect for luxury dress shirts & kameez.", "tags": ["Imported", "Cotton", "Giza", "Luxury"]}, {"id": "irish-linen", "title": "Pure Irish Linen", "subtitle": "Bespoke Summer Suiting", "sourceType": "web-curated", "relativePath": "/images/fabrics/imported/irish-linen.jpg", "filename": "irish-linen.jpg", "specs": "Natural flax linen with rich slub texture and high breathability for hot climates and destination wear.", "tags": ["Imported", "Linen", "Summer", "Textured"]}, {"id": "tropical-poly-wool", "title": "Tropical Poly-Wool Blend", "subtitle": "280 GSM Corporate Suiting", "sourceType": "technical-svg", "relativePath": "/images/fabrics/imported/tropical-poly-wool.svg", "filename": "tropical-poly-wool.svg", "specs": "Wrinkle-resistant fine herringbone poly-wool blend engineered for year-round daily suiting durability.", "tags": ["Imported", "Poly-Wool", "Corporate", "Durable"]}, {"id": "italian-silk-blend", "title": "Italian Silk-Wool Blend", "subtitle": "310 GSM Festive Lustre", "sourceType": "technical-svg", "relativePath": "/images/fabrics/imported/italian-silk-blend.svg", "filename": "italian-silk-blend.svg", "specs": "Rich silk-wool blend with emerald satin reflection for groomsmen waistcoats, prince coats, and evening wear.", "tags": ["Imported", "Silk Blend", "Festive", "Lustrous"]}, {"id": "cashmere-blend", "title": "Cashmere-Wool Blend", "subtitle": "380 GSM Heavy Winter Coating", "sourceType": "technical-svg", "relativePath": "/images/fabrics/imported/cashmere-blend.svg", "filename": "cashmere-blend.svg", "specs": "Soft brushed camel-toned cashmere blend delivering thermal warmth with a velvet-soft nap for overcoats.", "tags": ["Imported", "Cashmere", "Winter", "Overcoat"]}]}, {"id": "fabrics_local", "name": "Local & Heritage Fabrics", "description": "Authentic Pakistani cultural staples and premium local mill suiting", "items": [{"id": "pashmina-boski", "title": "Pure Chinese / Pakistani Boski", "subtitle": "8-Pound Pure Spun Silk", "sourceType": "technical-svg", "relativePath": "/images/fabrics/local/pashmina-boski.svg", "filename": "pashmina-boski.svg", "specs": "Authentic 8-pound weight pure mulberry spun silk. Cream/ivory drape with hallmark matte-gold sheen.", "tags": ["Local", "Boski", "Silk", "Heritage", "Prestigious"]}, {"id": "kamalia-khaddar", "title": "Kamalia Handspun Khaddar", "subtitle": "Handloom Winter Cotton", "sourceType": "technical-svg", "relativePath": "/images/fabrics/local/kamalia-khaddar.svg", "filename": "kamalia-khaddar.svg", "specs": "Handloom spun dense natural cotton in warm walnut brown. Renowned Pakistani heritage winter suiting.", "tags": ["Local", "Khaddar", "Handloom", "Heritage"]}, {"id": "karandi", "title": "Traditional Winter Karandi", "subtitle": "Cotton-Silk Slub Suiting", "sourceType": "technical-svg", "relativePath": "/images/fabrics/local/karandi.svg", "filename": "karandi.svg", "specs": "Distinctive granular cross-weave textured fabric in charcoal grey. Ideal for structured kurta shalwar.", "tags": ["Local", "Karandi", "Textured", "Winter"]}, {"id": "latif-cotton", "title": "Latif Super Fine Latha", "subtitle": "Snow-White Glazed Cotton", "sourceType": "technical-svg", "relativePath": "/images/fabrics/local/latif-cotton.svg", "filename": "latif-cotton.svg", "specs": "100% fine combed high-thread-count white latha with a crisp glazed press. The definitive national dress standard.", "tags": ["Local", "Cotton", "Latha", "White", "Crisp"]}, {"id": "grace-fabrics", "title": "Grace Executive Suiting", "subtitle": "Premium Wash & Wear", "sourceType": "technical-svg", "relativePath": "/images/fabrics/local/grace-fabrics.svg", "filename": "grace-fabrics.svg", "specs": "Wrinkle-free wash-and-wear microfiber suiting in midnight navy with executive fall and fall-free recovery.", "tags": ["Local", "Grace", "Wash & Wear", "Executive"]}, {"id": "gul-ahmed-cotton", "title": "Gul Ahmed Luxury Dyed Cotton", "subtitle": "Breathable Combed Cotton", "sourceType": "technical-svg", "relativePath": "/images/fabrics/local/gul-ahmed-cotton.svg", "filename": "gul-ahmed-cotton.svg", "specs": "Pure combed dyed cotton in delicate pastel sky blue with color-fast vat dyeing for everyday summer luxury.", "tags": ["Local", "Gul Ahmed", "Summer", "Cotton"]}]}, {"id": "designs_shalwar_kameez", "name": "Shalwar Kameez Customization Options", "description": "Collar A1-A4, Ban B1-B4, Front Patti Styles, Pocket Layouts, Buttons A-F, Daman & Pancha", "items": [{"id": "collar-a1-standard-point", "title": "Collar A1: Standard Point", "subtitle": "Classic Narrow Spread (2.75\")", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/collar-a1-standard-point.svg", "filename": "collar-a1-standard-point.svg", "specs": "Narrow point angle (1.75\" gap) giving an upright, formal presence for shirt-collar kameez.", "tags": ["Collar", "A1", "Point"]}, {"id": "collar-a2-spread", "title": "Collar A2: Spread Collar", "subtitle": "Medium English Spread (3.75\")", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/collar-a2-spread.svg", "filename": "collar-a2-spread.svg", "specs": "Wider point angle (3.75\" gap) providing a contemporary, balanced look.", "tags": ["Collar", "A2", "Spread"]}, {"id": "collar-a3-cutaway", "title": "Collar A3: Cutaway Collar", "subtitle": "Extreme Wide Spread (5.0\")", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/collar-a3-cutaway.svg", "filename": "collar-a3-cutaway.svg", "specs": "Points angling dramatically toward shoulders for an assertive sartorial statement.", "tags": ["Collar", "A3", "Cutaway"]}, {"id": "collar-a4-button-down", "title": "Collar A4: Button-Down Collar", "subtitle": "Anchored Casual Points", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/collar-a4-button-down.svg", "filename": "collar-a4-button-down.svg", "specs": "Corner button anchors maintaining a permanent graceful roll without curling.", "tags": ["Collar", "A4", "Button-Down"]}, {"id": "ban-b1-full-round", "title": "Ban B1: Full Round Ban", "subtitle": "1.25\" Height Curved Edges", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/ban-b1-full-round.svg", "filename": "ban-b1-full-round.svg", "specs": "Curved radius at front opening. The classic regal Sherwani/Kurta collar.", "tags": ["Ban", "B1", "Round"]}, {"id": "ban-b2-square-cut", "title": "Ban B2: Square Cut Ban", "subtitle": "90\u00b0 Sharp Geometric Edge", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/ban-b2-square-cut.svg", "filename": "ban-b2-square-cut.svg", "specs": "Clean 90-degree squared corner for a modern, crisp corporate silhouette.", "tags": ["Ban", "B2", "Square"]}, {"id": "ban-b3-half-ban", "title": "Ban B3: Half Ban / Semi Ban", "subtitle": "Low-Profile 0.75\" Stand", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/ban-b3-half-ban.svg", "filename": "ban-b3-half-ban.svg", "specs": "Slightly shorter height for superior neck comfort during long summer wear.", "tags": ["Ban", "B3", "Half-Ban"]}, {"id": "ban-b4-overlap-chinese", "title": "Ban B4: Overlap Chinese Ban", "subtitle": "Asymmetric Wrap Flap", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/ban-b4-overlap-chinese.svg", "filename": "ban-b4-overlap-chinese.svg", "specs": "Overlapping asymmetric front tab fastened with single offset button or stud.", "tags": ["Ban", "B4", "Chinese"]}, {"id": "front-patti-plain", "title": "Front Patti: Plain Simple", "subtitle": "1.25\" Clean Seam Placket", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/front-patti-plain.svg", "filename": "front-patti-plain.svg", "specs": "Traditional 1.25\" width front placket with topstitching and visible button eyelets.", "tags": ["Patti", "Placket", "Plain"]}, {"id": "front-patti-gum-concealed", "title": "Front Patti: Gum (Concealed)", "subtitle": "Blind Stitched Fly-Front", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/front-patti-gum-concealed.svg", "filename": "front-patti-gum-concealed.svg", "specs": "Underlying fly hides all buttons beneath a seamless fabric facade.", "tags": ["Patti", "Placket", "Concealed", "Gum"]}, {"id": "front-patti-double-stitch", "title": "Front Patti: Double Stitch", "subtitle": "Twin Needle Tailor Lines", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/front-patti-double-stitch.svg", "filename": "front-patti-double-stitch.svg", "specs": "Twin parallel threadwork runs framing the placket with artisan contrast stitching.", "tags": ["Patti", "Placket", "Double-Stitch"]}, {"id": "front-patti-v-cut", "title": "Front Patti: V-Cut Style", "subtitle": "1.5\" Arrowhead Finial", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/front-patti-v-cut.svg", "filename": "front-patti-v-cut.svg", "specs": "Pointed V-arrowhead lower finish adding visual length and structure to the chest.", "tags": ["Patti", "Placket", "V-Cut"]}, {"id": "daman-round", "title": "Daman: Round (Ghol)", "subtitle": "Curved Punjabi Draped Hem", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/daman-round.svg", "filename": "daman-round.svg", "specs": "Arched curve from side slits to center for graceful flowing motion.", "tags": ["Daman", "Ghol", "Round"]}, {"id": "daman-straight", "title": "Daman: Straight (Chakor)", "subtitle": "Sharp 90\u00b0 Square Hem", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/daman-straight.svg", "filename": "daman-straight.svg", "specs": "Clean horizontal hemline with 90\u00b0 corners for formal and suiting-style kameez.", "tags": ["Daman", "Chakor", "Straight"]}, {"id": "pancha-plain", "title": "Pancha: Plain Simple", "subtitle": "1.0\" Standard Cuff Hem", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/pancha-plain.svg", "filename": "pancha-plain.svg", "specs": "Standard folded cuff with single blind needle stitch.", "tags": ["Pancha", "Shalwar", "Plain"]}, {"id": "pancha-multi-stitch", "title": "Pancha: Multi-Line Stitch", "subtitle": "5-Row Dense Precision Stitching", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/pancha-multi-stitch.svg", "filename": "pancha-multi-stitch.svg", "specs": "Multiple parallel thread rows adding weight, structure, and distinctive texture.", "tags": ["Pancha", "Shalwar", "Multi-Stitch"]}, {"id": "pancha-bukram-stiff", "title": "Pancha: Bukram Stiff", "subtitle": "Heavy Canvas Interlined Hem", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/pancha-bukram-stiff.svg", "filename": "pancha-bukram-stiff.svg", "specs": "Fused interior canvas keeping the bottom opening crisply circular and unwrinkled.", "tags": ["Pancha", "Shalwar", "Bukram"]}, {"id": "pockets-4-layout", "title": "Pockets: 4-Pocket Layout", "subtitle": "1 Chest + 2 Sides + 1 Inner", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/pockets-4-layout.svg", "filename": "pockets-4-layout.svg", "specs": "Standard tailored configuration for daily comfort and essential carry.", "tags": ["Pockets", "4-Pocket"]}, {"id": "pockets-5-layout", "title": "Pockets: 5-Pocket Layout", "subtitle": "+ Shalwar Mobile Pocket", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/pockets-5-layout.svg", "filename": "pockets-5-layout.svg", "specs": "Includes dedicated reinforced zipper mobile pocket concealed in shalwar waist.", "tags": ["Pockets", "5-Pocket", "Mobile"]}, {"id": "pockets-6-layout", "title": "Pockets: 6-Pocket Layout", "subtitle": "Twin Chest Pockets + Utility", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/pockets-6-layout.svg", "filename": "pockets-6-layout.svg", "specs": "Dual chest utility pockets with pen divide, 2 sides, inner wallet, and shalwar mobile pocket.", "tags": ["Pockets", "6-Pocket", "Executive"]}, {"id": "button-a-pearl-shell", "title": "Button A: Mother-of-Pearl Shell", "subtitle": "Natural Luminous 4-Hole", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/button-a-pearl-shell.svg", "filename": "button-a-pearl-shell.svg", "specs": "Natural mother-of-pearl shell button with cross-stitched thread anchor.", "tags": ["Buttons", "Pearl", "Shell"]}, {"id": "button-b-antique-brass", "title": "Button B: Antique Brass Stud", "subtitle": "Engraved Metallic Fasteners", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/button-b-antique-brass.svg", "filename": "button-b-antique-brass.svg", "specs": "Solid brass stud buttons designed for detachable kurta patti rings.", "tags": ["Buttons", "Brass", "Stud"]}, {"id": "button-c-matte-black", "title": "Button C: Matte Black Minimalist", "subtitle": "Non-Reflective Midnight Finish", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/button-c-matte-black.svg", "filename": "button-c-matte-black.svg", "specs": "Satin black modern buttons with gold interior thread highlights.", "tags": ["Buttons", "Matte Black", "Modern"]}, {"id": "button-d-horn-wood", "title": "Button D: Natural Horn / Wood", "subtitle": "Organic Grain Striations", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/button-d-horn-wood.svg", "filename": "button-d-horn-wood.svg", "specs": "Real horn effect buttons with unique natural grain for wool and linen suiting.", "tags": ["Buttons", "Horn", "Wood"]}, {"id": "button-e-concealed", "title": "Button E: Concealed Fastening", "subtitle": "Hidden Fly-Front Buttons", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/button-e-concealed.svg", "filename": "button-e-concealed.svg", "specs": "Interior flat anchor buttons concealed beneath outer placket.", "tags": ["Buttons", "Concealed"]}, {"id": "button-f-potli-fabric", "title": "Button F: Handcrafted Potli", "subtitle": "Artisanal Silk-Wrapped Spheres", "sourceType": "technical-svg", "relativePath": "/images/designs/shalwar-kameez/button-f-potli-fabric.svg", "filename": "button-f-potli-fabric.svg", "specs": "Fabric-wrapped potli beads with matching handcrafted loop closures.", "tags": ["Buttons", "Potli", "Handcrafted"]}]}, {"id": "designs_waistcoat", "name": "Waistcoat Customization Options", "description": "Without Sleeves, Cross Back, Ban/Gol/V-Neck, Shoulder Slopes", "items": [{"id": "waistcoat-ban-neck", "title": "Waistcoat: Ban Neck (Nehru)", "subtitle": "Royal Mandarin Stand Collar", "sourceType": "technical-svg", "relativePath": "/images/designs/waistcoat/waistcoat-ban-neck.svg", "filename": "waistcoat-ban-neck.svg", "specs": "Structured 1.25\" ban stand collar with 5-button front closure and double welt pockets.", "tags": ["Waistcoat", "Ban", "Nehru"]}, {"id": "waistcoat-gol-neck", "title": "Waistcoat: Gol Neck (Round Scoop)", "subtitle": "Clean Collarless Scoop", "sourceType": "technical-svg", "relativePath": "/images/designs/waistcoat/waistcoat-gol-neck.svg", "filename": "waistcoat-gol-neck.svg", "specs": "Collarless circular scoop neck designed to showcase the kurta ban collar beneath.", "tags": ["Waistcoat", "Gol Neck", "Round"]}, {"id": "waistcoat-v-neck", "title": "Waistcoat: V-Neck Style", "subtitle": "Deep Tailored V-Opening", "sourceType": "technical-svg", "relativePath": "/images/designs/waistcoat/waistcoat-v-neck.svg", "filename": "waistcoat-v-neck.svg", "specs": "Western style low-stance V-front designed to pair with dress shirts and ties.", "tags": ["Waistcoat", "V-Neck", "Western"]}, {"id": "waistcoat-cross-back", "title": "Waistcoat: Cross Back", "subtitle": "Sartorial T-Back Yoke", "sourceType": "technical-svg", "relativePath": "/images/designs/waistcoat/waistcoat-cross-back.svg", "filename": "waistcoat-cross-back.svg", "specs": "Horizontal and vertical seam intersect delivering unmatched shoulder fit.", "tags": ["Waistcoat", "Cross Back"]}, {"id": "waistcoat-plain-back", "title": "Waistcoat: Plain Satin Back", "subtitle": "Adjuster Belt with Brass Slider", "sourceType": "technical-svg", "relativePath": "/images/designs/waistcoat/waistcoat-plain-back.svg", "filename": "waistcoat-plain-back.svg", "specs": "Lustrous lining satin rear with adjustable cinch buckle.", "tags": ["Waistcoat", "Plain Back", "Cinch"]}, {"id": "shoulder-slope-normal-down", "title": "Shoulder Slope: Normal Down", "subtitle": "22\u00b0 Anatomical Drop", "sourceType": "technical-svg", "relativePath": "/images/designs/waistcoat/shoulder-slope-normal-down.svg", "filename": "shoulder-slope-normal-down.svg", "specs": "Standard anatomical slope conforming naturally to the clavicle line.", "tags": ["Shoulder", "Slope", "Normal"]}, {"id": "shoulder-slope-full-straight", "title": "Shoulder Slope: Full Straight", "subtitle": "10\u00b0 Square Upright Pitch", "sourceType": "technical-svg", "relativePath": "/images/designs/waistcoat/shoulder-slope-full-straight.svg", "filename": "shoulder-slope-full-straight.svg", "specs": "Tailored for square, athletic, or padded shoulder posture.", "tags": ["Shoulder", "Slope", "Straight"]}]}, {"id": "designs_coat_pant", "name": "Coat-Pant & Suiting Options", "description": "Prince Coat, Long Coat, Sport Coat, Peak/Notch/Shawl Lapels, Flap/Welt Pockets, Choke Vents, Trouser Options", "items": [{"id": "two-button-front-coat", "title": "Two-Button Tailored Coat", "subtitle": "Single Breasted Front Fit", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/two-button-front-coat.jpg", "filename": "two-button-front-coat.jpg", "specs": "Navy blue subtle check jacket with 2 buttons, roll lapel, and flap hip pockets.", "tags": ["Coat", "2-Button", "Local-User-Asset"]}, {"id": "sport-coat-check-pattern", "title": "Sport Coat (Check Pattern)", "subtitle": "Full Mannequin Display", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/sport-coat-check-pattern.jpg", "filename": "sport-coat-check-pattern.jpg", "specs": "Tailored sport coat with soft canvas shoulder and modern taper.", "tags": ["Sport Coat", "Check", "Local-User-Asset"]}, {"id": "peak-lapel-collar-3-point-5-inch", "title": "Peak Lapel (3.5\" Width)", "subtitle": "Tailored Notch-to-Peak Cut", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/peak-lapel-collar-3-point-5-inch.jpg", "filename": "peak-lapel-collar-3-point-5-inch.jpg", "specs": "Exact 3.5-inch peak lapel close-up showing buttonhole lapel stitch and breast pocket.", "tags": ["Lapel", "Peak", "3.5-inch", "Local-User-Asset"]}, {"id": "peak-lapel-detail", "title": "Peak Lapel Collar Detail", "subtitle": "Macro Lapel Gorge View", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/peak-lapel-detail.jpg", "filename": "peak-lapel-detail.jpg", "specs": "Close-up perspective of the sharp peak lapel point and shoulder roll.", "tags": ["Lapel", "Detail", "Local-User-Asset"]}, {"id": "long-coat-pinstripe-front", "title": "Long Coat: Pinstripe Front", "subtitle": "Full Length Overcoat on Form", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/long-coat-pinstripe-front.jpg", "filename": "long-coat-pinstripe-front.jpg", "specs": "Taupe grey pinstripe tailored long coat with notch lapel, 3 buttons, and slant welt pockets.", "tags": ["Long Coat", "Overcoat", "Pinstripe", "Local-User-Asset"]}, {"id": "long-coat-solid-slate", "title": "Long Coat: Solid Slate Grey", "subtitle": "Plain Woolen Winter Coat", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/long-coat-solid-slate.jpg", "filename": "long-coat-solid-slate.jpg", "specs": "Solid slate grey luxury long coat on tailoring mannequin in the Abdullah Melody showroom.", "tags": ["Long Coat", "Solid", "Slate", "Local-User-Asset"]}, {"id": "slanted-welt-pocket", "title": "Coat Pocket: Slanted Welt", "subtitle": "Handcrafted Side Pocket", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/slanted-welt-pocket.jpg", "filename": "slanted-welt-pocket.jpg", "specs": "Macro view of the tailored slant welt side pocket on the pinstripe long coat.", "tags": ["Pocket", "Slanted Welt", "Local-User-Asset"]}, {"id": "notch-lapel-breast-pocket", "title": "Notch Lapel & Breast Pocket", "subtitle": "Long Coat Upper Chest", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/notch-lapel-breast-pocket.jpg", "filename": "notch-lapel-breast-pocket.jpg", "specs": "Close-up of notch collar gorge and jetted breast pocket on long coat.", "tags": ["Lapel", "Notch", "Breast Pocket", "Local-User-Asset"]}, {"id": "sleeve-cuff-strap-pinstripe", "title": "Sleeve Cuff with Button Strap", "subtitle": "Pinstripe Long Coat Cuff", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/sleeve-cuff-strap-pinstripe.jpg", "filename": "sleeve-cuff-strap-pinstripe.jpg", "specs": "Detail of sleeve cuff band with four-hole horn button closure.", "tags": ["Cuff", "Sleeve", "Strap", "Local-User-Asset"]}, {"id": "sleeve-cuff-strap-solid", "title": "Sleeve Cuff Strap (Solid Grey)", "subtitle": "Slate Long Coat Cuff", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/sleeve-cuff-strap-solid.jpg", "filename": "sleeve-cuff-strap-solid.jpg", "specs": "Close-up of matching cuff strap on the solid slate long coat.", "tags": ["Cuff", "Sleeve", "Local-User-Asset"]}, {"id": "center-choke-vent-back-belt", "title": "Coat Back: Center Choke & Half Belt", "subtitle": "Rear Waist Belt Architecture", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/center-choke-vent-back-belt.jpg", "filename": "center-choke-vent-back-belt.jpg", "specs": "Back view showing fitted waist half-belt with topstitching and long single center choke vent.", "tags": ["Vent", "Choke", "Half Belt", "Local-User-Asset"]}, {"id": "back-belt-choke-vent-detail", "title": "Back Belt & Vent Close-Up", "subtitle": "Tailoring Stitch Precision", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/back-belt-choke-vent-detail.jpg", "filename": "back-belt-choke-vent-detail.jpg", "specs": "Detailed shot of center seam aligning into back vent with stitch guides.", "tags": ["Vent", "Detail", "Local-User-Asset"]}, {"id": "single-choke-vent-close", "title": "Single Choke Vent Bottom Edge", "subtitle": "Overcoat Center Split", "sourceType": "local-user", "relativePath": "/images/designs/coat-pant/single-choke-vent-close.jpg", "filename": "single-choke-vent-close.jpg", "specs": "Underlay fold and hem of the center choke vent.", "tags": ["Vent", "Choke", "Local-User-Asset"]}, {"id": "prince-coat", "title": "Prince Coat (Bandhgala)", "subtitle": "Regal Closed High Collar", "sourceType": "web-curated", "relativePath": "/images/designs/coat-pant/prince-coat.jpg", "filename": "prince-coat.jpg", "specs": "Midnight black tailored Prince Coat with stand mandarin collar and ornamental buttons.", "tags": ["Prince Coat", "Bandhgala", "Wedding", "Curated"]}, {"id": "lapel-peak", "title": "Lapel Diagram: Peak Lapel", "subtitle": "Upward Pointed Formal Lapel", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/lapel-peak.svg", "filename": "lapel-peak.svg", "specs": "Broadens chest and draws the eye upwards toward shoulders.", "tags": ["Lapel", "Peak", "Diagram"]}, {"id": "lapel-notch", "title": "Lapel Diagram: Notch Lapel", "subtitle": "Standard 90\u00b0 Notch Gorge", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/lapel-notch.svg", "filename": "lapel-notch.svg", "specs": "Universal business suit collar gorge suitable for all body types.", "tags": ["Lapel", "Notch", "Diagram"]}, {"id": "lapel-shawl", "title": "Lapel Diagram: Shawl Lapel", "subtitle": "Curved Tuxedo Collar Roll", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/lapel-shawl.svg", "filename": "lapel-shawl.svg", "specs": "Continuous curved silk/satin lapel for dinner jackets and black tie.", "tags": ["Lapel", "Shawl", "Diagram"]}, {"id": "pocket-flap", "title": "Pocket Diagram: Flap Pocket", "subtitle": "Classic Bespoke Pocket Flap", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/pocket-flap.svg", "filename": "pocket-flap.svg", "specs": "Tuckable flap offering both clean welt look or protective cover.", "tags": ["Pocket", "Flap", "Diagram"]}, {"id": "pocket-slanted-welt", "title": "Pocket Diagram: Slanted Welt", "subtitle": "15\u00b0 Athletic Slant (Hacking)", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/pocket-slanted-welt.svg", "filename": "pocket-slanted-welt.svg", "specs": "Angled pocket line slimming the waist and easing hand entry.", "tags": ["Pocket", "Welt", "Diagram"]}, {"id": "pocket-jetted", "title": "Pocket Diagram: Jetted (Besom)", "subtitle": "Minimalist Dual Piping", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/pocket-jetted.svg", "filename": "pocket-jetted.svg", "specs": "Clean double-besom piping with no flap for black tie and formal tuxedos.", "tags": ["Pocket", "Jetted", "Besom", "Diagram"]}, {"id": "pocket-patch", "title": "Pocket Diagram: Patch Pocket", "subtitle": "Topstitched Exterior Patch", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/pocket-patch.svg", "filename": "pocket-patch.svg", "specs": "Casual blazer aesthetic stitched externally to the body of the coat.", "tags": ["Pocket", "Patch", "Diagram"]}, {"id": "with-choke-vents", "title": "Vent Diagram: Center Choke", "subtitle": "Single 8-10\" Rear Vent", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/with-choke-vents.svg", "filename": "with-choke-vents.svg", "specs": "Single center slit allowing freedom of movement when seated or walking.", "tags": ["Vent", "Choke", "Diagram"]}, {"id": "without-choke-vents", "title": "Vent Diagram: Without Choke", "subtitle": "Continuous Ventless Silhouette", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/without-choke-vents.svg", "filename": "without-choke-vents.svg", "specs": "Italian unbroken drape around the hips for sleek slim-fit styling.", "tags": ["Vent", "Ventless", "Diagram"]}, {"id": "double-choke-side-vents", "title": "Vent Diagram: Double Side Vents", "subtitle": "Twin British Side Vents", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/double-choke-side-vents.svg", "filename": "double-choke-side-vents.svg", "specs": "Double vents along side seams preventing jacket bunching with hands in pockets.", "tags": ["Vent", "Side Vents", "Diagram"]}, {"id": "pant-pleats-flat-front", "title": "Trouser: Flat Front", "subtitle": "Clean Modern No-Fold Waist", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/pant-pleats-flat-front.svg", "filename": "pant-pleats-flat-front.svg", "specs": "Flat pelvic front with sharp central press crease.", "tags": ["Pant", "Pleats", "Flat Front"]}, {"id": "pant-pleats-single", "title": "Trouser: Single Pleat", "subtitle": "Single Forward Inward Fold", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/pant-pleats-single.svg", "filename": "pant-pleats-single.svg", "specs": "Traditional forward pleat providing comfort while sitting.", "tags": ["Pant", "Pleats", "Single"]}, {"id": "pant-pleats-double", "title": "Trouser: Double Pleat", "subtitle": "Savile Row Twin Folds", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/pant-pleats-double.svg", "filename": "pant-pleats-double.svg", "specs": "Double pleats for full classic drape and maximum hip room.", "tags": ["Pant", "Pleats", "Double"]}, {"id": "pant-pocket-cross", "title": "Trouser Pocket: Cross (Slant)", "subtitle": "Diagonal Hand Entry", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/pant-pocket-cross.svg", "filename": "pant-pocket-cross.svg", "specs": "Angled pocket opening from waistband to side seam.", "tags": ["Trouser", "Pocket", "Cross"]}, {"id": "pant-pocket-straight", "title": "Trouser Pocket: Straight Seam", "subtitle": "Discreet Vertical Side Seam", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/pant-pocket-straight.svg", "filename": "pant-pocket-straight.svg", "specs": "Pocket constructed flush inside side seam for zero flare.", "tags": ["Trouser", "Pocket", "Straight"]}, {"id": "pant-bottom-plain", "title": "Trouser Bottom: Plain Hem", "subtitle": "Clean Blind-Stitched Hem", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/pant-bottom-plain.svg", "filename": "pant-bottom-plain.svg", "specs": "Turned under blind hem for crisp half-break or no-break look.", "tags": ["Trouser", "Hem", "Plain"]}, {"id": "pant-bottom-cuff", "title": "Trouser Bottom: Cuffed (Turn-Up)", "subtitle": "1.75\" External Weighted Cuff", "sourceType": "technical-svg", "relativePath": "/images/designs/coat-pant/pant-bottom-cuff.svg", "filename": "pant-bottom-cuff.svg", "specs": "Turn-up cuff adding weight to the hem for drape.", "tags": ["Trouser", "Hem", "Cuff"]}]}, {"id": "designs_safari_suit", "name": "Safari Suit Options", "description": "Collar styles, belt variations, and choke vents", "items": [{"id": "safari-suit-classic", "title": "Safari Suit: Classic Khaki", "subtitle": "4-Pocket Field Silhouette", "sourceType": "web-curated", "relativePath": "/images/designs/safari-suit/safari-suit-classic.jpg", "filename": "safari-suit-classic.jpg", "specs": "4 bellows box pleat pockets, notched camp collar, and tailored matching trousers.", "tags": ["Safari", "Bespoke", "Curated"]}, {"id": "safari-coat-collar", "title": "Safari Collar: Coat / Camp Collar", "subtitle": "Open Rever Notch Collar", "sourceType": "technical-svg", "relativePath": "/images/designs/safari-suit/safari-coat-collar.svg", "filename": "safari-coat-collar.svg", "specs": "Wide notched open collar tailored flat across chest.", "tags": ["Safari", "Collar", "Camp"]}, {"id": "safari-shirt-collar", "title": "Safari Collar: Shirt Collar", "subtitle": "Structured Turn-Down Collar", "sourceType": "technical-svg", "relativePath": "/images/designs/safari-suit/safari-shirt-collar.svg", "filename": "safari-shirt-collar.svg", "specs": "Classic shirt collar with collar stand and button throat latch.", "tags": ["Safari", "Collar", "Shirt"]}, {"id": "safari-with-belt", "title": "Safari Waist: With Belt", "subtitle": "Tailored Cinching Belt & Buckle", "sourceType": "technical-svg", "relativePath": "/images/designs/safari-suit/safari-with-belt.svg", "filename": "safari-with-belt.svg", "specs": "Half back belt or full belt with matching fabric covered buckle.", "tags": ["Safari", "Belt"]}, {"id": "safari-without-belt", "title": "Safari Waist: Without Belt", "subtitle": "Seamless Tailored Torso", "sourceType": "technical-svg", "relativePath": "/images/designs/safari-suit/safari-without-belt.svg", "filename": "safari-without-belt.svg", "specs": "Fitted waist shaped with internal side and back darts.", "tags": ["Safari", "No-Belt"]}]}, {"id": "designs_uniforms", "name": "Uniform Tailoring Specifications", "description": "Service flap pockets, shoulder epaulettes, and rank star anchors", "items": [{"id": "uniform-dual-pockets", "title": "Uniform: Dual Bellows Pockets", "subtitle": "Reinforced Flap with Pen Slot", "sourceType": "technical-svg", "relativePath": "/images/designs/uniforms/uniform-dual-pockets.svg", "filename": "uniform-dual-pockets.svg", "specs": "Dual chest box-pleat pockets with pointed flap button closure and left pen compartment.", "tags": ["Uniform", "Pockets", "Police", "FIA"]}, {"id": "uniform-epaulettes-stars", "title": "Uniform: Epaulettes & Stars", "subtitle": "Reinforced Shoulder Straps", "sourceType": "technical-svg", "relativePath": "/images/designs/uniforms/uniform-epaulettes-stars.svg", "filename": "uniform-epaulettes-stars.svg", "specs": "Pointed shoulder epaulette straps with brass anchor button and officer rank star eyelets.", "tags": ["Uniform", "Epaulettes", "Stars", "Rank"]}]}, {"id": "unclassified", "name": "Showroom & Unclassified Assets", "description": "Additional perspective shots and atelier backgrounds from original raw intake", "items": [{"id": "long-coat-shop-fabric-backdrop", "title": "Long Coat (Fabric Rolls Backdrop)", "subtitle": "Atelier Storage Display View", "sourceType": "local-user", "relativePath": "/images/unclassified/long-coat-shop-fabric-backdrop.jpg", "filename": "long-coat-shop-fabric-backdrop.jpg", "specs": "Pinstripe coat back view suspended in showroom showcasing rolls of fine suiting fabric.", "tags": ["Showroom", "Fabrics", "Local-User-Asset"]}, {"id": "long-coat-alternate-perspective", "title": "Long Coat (Angle Perspective)", "subtitle": "Three-Quarter View", "sourceType": "local-user", "relativePath": "/images/unclassified/long-coat-alternate-perspective.jpg", "filename": "long-coat-alternate-perspective.jpg", "specs": "Three-quarter perspective of tailored long coat in the shop.", "tags": ["Perspective", "Local-User-Asset"]}, {"id": "two-button-suit-alternate-angle", "title": "Two-Button Suit Coat (Fitting Angle)", "subtitle": "Alternative Stance Photo", "sourceType": "local-user", "relativePath": "/images/unclassified/two-button-suit-alternate-angle.jpg", "filename": "two-button-suit-alternate-angle.jpg", "specs": "Straight-on fitting shot of 2-button navy check coat on form.", "tags": ["Coat", "Fitting", "Local-User-Asset"]}]}]};
+
+    let activeFilter = 'all';
+    let activeSourceFilter = null;
+    let searchQuery = '';
+    let currentOpenItem = null;
+
+    const galleryContainer = document.getElementById('galleryContainer');
+    const searchInput = document.getElementById('searchInput');
+    const filterPills = document.getElementById('filterPills');
+    const lightboxModal = document.getElementById('lightboxModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    const modalSpecs = document.getElementById('modalSpecs');
+    const modalPath = document.getElementById('modalPath');
+    const modalCopyBtn = document.getElementById('modalCopyBtn');
+    const imageSwapInput = document.getElementById('imageSwapInput');
+    const toastNotice = document.getElementById('toastNotice');
+
+    function showToast(msg) {
+      toastNotice.textContent = msg;
+      toastNotice.classList.add('show');
+      setTimeout(() => toastNotice.classList.remove('show'), 2200);
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Path copied: ' + text);
+      }).catch(() => {
+        showToast('Copied: ' + text);
+      });
+    }
+
+    function renderGallery() {
+      galleryContainer.innerHTML = '';
+
+      manifest.categories.forEach(category => {
+        // Category filtering
+        if (activeFilter !== 'all' && activeFilter !== category.id) return;
+
+        // Item filtering
+        const matchingItems = category.items.filter(item => {
+          if (activeSourceFilter && item.sourceType !== activeSourceFilter) return false;
+          if (!searchQuery) return true;
+          const q = searchQuery.toLowerCase();
+          const title = item.title.toLowerCase();
+          const subtitle = (item.subtitle || '').toLowerCase();
+          const specs = (item.specs || '').toLowerCase();
+          const tags = (item.tags || []).join(' ').toLowerCase();
+          return title.includes(q) || subtitle.includes(q) || specs.includes(q) || tags.includes(q);
+        });
+
+        if (matchingItems.length === 0) return;
+
+        const section = document.createElement('section');
+        section.className = 'category-section';
+
+        section.innerHTML = `
+          <div class="category-header">
+            <div class="category-title-group">
+              <h2>${category.name}</h2>
+              <p>${category.description}</p>
+            </div>
+            <span class="cat-count-badge">${matchingItems.length} ${matchingItems.length === 1 ? 'Asset' : 'Assets'}</span>
+          </div>
+          <div class="cards-grid" id="grid-${category.id}"></div>
+        `;
+
+        const grid = section.querySelector('.cards-grid');
+
+        matchingItems.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'asset-card';
+          card.dataset.id = item.id;
+
+          const sourceBadgeClass = item.sourceType === 'local-user' 
+            ? 'badge-local-user' 
+            : item.sourceType === 'web-curated' 
+              ? 'badge-web-curated' 
+              : 'badge-technical-svg';
+
+          const sourceLabel = item.sourceType === 'local-user' 
+            ? 'Local User' 
+            : item.sourceType === 'web-curated' 
+              ? 'Curated Photo' 
+              : 'Technical SVG';
+
+          // Correct relative path for browser viewing directly from root
+          const relativeAssetPath = '.' + item.relativePath;
+
+          card.innerHTML = `
+            <div class="card-thumb-wrap">
+              <span class="source-badge ${sourceBadgeClass}">${sourceLabel}</span>
+              <img src="${relativeAssetPath}" alt="${item.title}" loading="lazy" id="img-${item.id}">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">${item.title}</h3>
+              <div class="card-subtitle">${item.subtitle || ''}</div>
+              <p class="card-specs">${item.specs || ''}</p>
+              <div class="card-tags">
+                ${(item.tags || []).map(t => `<span class="tag-item">${t}</span>`).join('')}
+              </div>
+              <div class="card-footer">
+                <span class="path-text" title="${item.relativePath}">${item.relativePath}</span>
+                <button class="card-btn copy-btn" data-path="${item.relativePath}">Copy</button>
+                <button class="card-btn zoom-btn">Inspect</button>
+              </div>
+            </div>
+          `;
+
+          // Zoom / Inspect click
+          card.querySelector('.card-thumb-wrap').addEventListener('click', () => openModal(item, relativeAssetPath));
+          card.querySelector('.zoom-btn').addEventListener('click', () => openModal(item, relativeAssetPath));
+
+          // Copy button
+          card.querySelector('.copy-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            copyToClipboard(item.relativePath);
+          });
+
+          grid.appendChild(card);
+        });
+
+        galleryContainer.appendChild(section);
+      });
+
+      if (galleryContainer.children.length === 0) {
+        galleryContainer.innerHTML = `
+          <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
+            <h3 style="color: #fff; margin-bottom: 8px;">No matching assets found</h3>
+            <p>Try clearing your search query or switching filters.</p>
+          </div>
+        `;
+      }
+    }
+
+    function openModal(item, assetPath) {
+      currentOpenItem = item;
+      modalImage.src = assetPath;
+      modalTitle.textContent = item.title;
+      modalSubtitle.textContent = item.subtitle || '';
+      modalSpecs.textContent = item.specs || '';
+      modalPath.textContent = item.relativePath;
+      lightboxModal.classList.add('active');
+    }
+
+    modalClose.addEventListener('click', () => {
+      lightboxModal.classList.remove('active');
+    });
+
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) {
+        lightboxModal.classList.remove('active');
+      }
+    });
+
+    modalCopyBtn.addEventListener('click', () => {
+      if (currentOpenItem) {
+        copyToClipboard(currentOpenItem.relativePath);
+      }
+    });
+
+    // Live local image swap preview for testing
+    imageSwapInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file && currentOpenItem) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const dataUrl = event.target.result;
+          modalImage.src = dataUrl;
+          const cardImg = document.getElementById('img-' + currentOpenItem.id);
+          if (cardImg) {
+            cardImg.src = dataUrl;
+          }
+          showToast(`Previewing "${file.name}" in place of ${currentOpenItem.id}!`);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Search filter
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      renderGallery();
+    });
+
+    // Category / Source filter buttons
+    filterPills.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (btn.dataset.source) {
+        activeSourceFilter = btn.dataset.source;
+        activeFilter = 'all';
+      } else {
+        activeSourceFilter = null;
+        activeFilter = btn.dataset.filter || 'all';
+      }
+
+      renderGallery();
+    });
+
+    // Initialize
+    renderGallery();
+  </script>
+</body>
+</html>

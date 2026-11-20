@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-obsidian-950 text-gray-100 font-sans;
+  }
+
+  /* Custom scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d0f13;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #283142;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c8a96a;
+  }
+}
+
+/* Luxury card transitions */
+.card-gold-active {
+  border-color: #c8a96a !important;
+  box-shadow: 0 0 0 2px rgba(200, 169, 106, 0.45), 0 8px 24px -6px rgba(0, 0, 0, 0.7);
+}
+
+/* Print styling for Master Tailor Cutting Slip */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-slip, #printable-slip * {
+    visibility: visible;
+  }
+  #printable-slip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
